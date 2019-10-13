@@ -22,20 +22,42 @@ library(tidyverse)
 
 fang_et_al_genotypes <- read_tsv ("https://raw.githubusercontent.com/Kakashi-sensei/Tianqili-R-Assignment/master/fang_et_al_genotypes.txt")
 
-maize_fang_et_al_genotypes.txt <- filter(fang_et_al_genotypes, Group == "ZMMLR" | Group == "ZMMIL" | Group == "ZMMMR")
+snp_position <- read_tsv ("https://raw.githubusercontent.com/Kakashi-sensei/Tianqili-R-Assignment/master/snp_position.txt")
 
-teosinte_fang_et_al_genotypes.txt <- filter(fang_et_al_genotypes, Group == "ZMPBA" | Group == "ZMPIL" | Group == "ZMPJA")
+maize_fang_et_al_genotypes <- filter(fang_et_al_genotypes, Group == "ZMMLR" | Group == "ZMMIL" | Group == "ZMMMR")
 
-save(maize_fang_et_al_genotypes.txt, file = "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/")
+teosinte_fang_et_al_genotypes <- filter(fang_et_al_genotypes, Group == "ZMPBA" | Group == "ZMPIL" | Group == "ZMPJA")
+
+maize_fang_et_al_genotypes <- maize_fang_et_al_genotypes[,-c(1,2,3)]
+
+maize_fang_et_al_genotypes <- t (maize_fang_et_al_genotypes)
+
+teosinte_fang_et_al_genotypes <- teosinte_fang_et_al_genotypes[,-c(1,2,3)]
+
+teosinte_fang_et_al_genotypes <- t (teosinte_fang_et_al_genotypes)
+
+snp_position <- snp_position[,-c(2,5:15)]
+
+arrange(snp_position, SNP_ID)
+
+maize_fang_et_al_genotypes <- cbind(snp_position, maize_fang_et_al_genotypes)
+
+teosinte_fang_et_al_genotypes <- cbind(snp_position, teosinte_fang_et_al_genotypes)
+
+
+
+
+
+
+
+save(maize_fang_et_al_genotypes.txt, file = "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/maize_fang_et_al_genotypes.txt")
+
+save(teosinte_fang_et_al_genotypes.txt, file = "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/teosinte_fang_et_al_genotypes.txt")
+
+
+
+
+
+
 
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
