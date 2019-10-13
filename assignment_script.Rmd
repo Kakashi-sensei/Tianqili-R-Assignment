@@ -45,10 +45,40 @@ maize_fang_et_al_genotypes <- cbind(snp_position, maize_fang_et_al_genotypes)
 teosinte_fang_et_al_genotypes <- cbind(snp_position, teosinte_fang_et_al_genotypes)
 
 
+maize_1 <- filter(maize_fang_et_al_genotypes, Chromosome == "1")
+
+maize_1_in <- arrange(maize_1, Position)
+
+save(maize_1_in, file = "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/maize_1_in.txt")
+
+for (i in 2:10) {
+  maize <- filter(maize_fang_et_al_genotypes, Chromosome == i)
+  maize <- arrange(maize, Position)
+  nam <- paste("maize_in", i, sep = "")
+  outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/"
+  save(maize, file = outpath[nam])
+  }
+
+```
 
 
 
 
+```{r}
+for(i in 1:5) { 
+ nam <- paste("A", i, sep = "")
+ print(nam)
+}
+```
+
+
+
+
+```
+
+maize_1_de <- arrange(desc(Position))
+
+nam <- paste("A", i, sep = "")
 
 save(maize_fang_et_al_genotypes.txt, file = "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/maize_fang_et_al_genotypes.txt")
 
