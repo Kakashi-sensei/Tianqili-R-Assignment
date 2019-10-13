@@ -15,8 +15,24 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+```{r}
+
+if (!require("tidyverse")) install.packages("tidyverse")
+library(tidyverse)
+
+fang_et_al_genotypes <- read_tsv ("https://raw.githubusercontent.com/Kakashi-sensei/Tianqili-R-Assignment/master/fang_et_al_genotypes.txt")
+
+maize_fang_et_al_genotypes.txt <- filter(fang_et_al_genotypes, Sample_ID == "ZMMLR" | "ZMMIL" | "ZMMMR")
+
+fang_et_al_genotypes.exe <- read_csv("data/Dataset_S1.txt")
+
+
+
+
+
+
+
+
 ```
 
 ## Including Plots
