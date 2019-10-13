@@ -22,16 +22,11 @@ library(tidyverse)
 
 fang_et_al_genotypes <- read_tsv ("https://raw.githubusercontent.com/Kakashi-sensei/Tianqili-R-Assignment/master/fang_et_al_genotypes.txt")
 
-maize_fang_et_al_genotypes.txt <- filter(fang_et_al_genotypes, Sample_ID == "ZMMLR" | "ZMMIL" | "ZMMMR")
+maize_fang_et_al_genotypes.txt <- filter(fang_et_al_genotypes, Group == "ZMMLR" | Group == "ZMMIL" | Group == "ZMMMR")
 
-fang_et_al_genotypes.exe <- read_csv("data/Dataset_S1.txt")
+teosinte_fang_et_al_genotypes.txt <- filter(fang_et_al_genotypes, Group == "ZMPBA" | Group == "ZMPIL" | Group == "ZMPJA")
 
-
-
-
-
-
-
+save(maize_fang_et_al_genotypes.txt, file = "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/")
 
 ```
 
