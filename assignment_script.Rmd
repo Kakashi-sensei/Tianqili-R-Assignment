@@ -56,7 +56,7 @@ for (i in 1:10) {
   out_filePath <- sapply(nam, function(x){
                      paste(outpath, x, sep='/')})
   write.csv(maize, file=out_filePath[i])
-}
+} #10 of maize increase data
 
 for (i in 1:10) {
   teosinte <- filter(teosinte_fang_et_al_genotypes, Chromosome == i)
@@ -69,14 +69,13 @@ for (i in 1:10) {
   out_filePath <- sapply(nam, function(x){
                      paste(outpath, x, sep='/')})
   write.csv(teosinte, file=out_filePath[i])
-}
+} #10 of teosinte increase data
 
 
 
 for (i in 1:10) {
   maize <- filter(maize_fang_et_al_genotypes, Chromosome == i)
   maize <- arrange(maize, desc(Position))
-  maize <- select(maize, "?" = "-")
   outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit"
   nam <- sapply(
     names(maize),function(x){
@@ -90,7 +89,6 @@ for (i in 1:10) {
 for (i in 1:10) {
   teosinte <- filter(teosinte_fang_et_al_genotypes, Chromosome == i)
   teosinte <- arrange(teosinte, desc(Position))
-  teosinte <- select(teosinte, '?' = '-')
   outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit"
   nam <- sapply(
     names(teosinte),function(x){
@@ -106,46 +104,5 @@ for (i in 1:10) {
 ```
 
 
-```{r}
-outPath <- "F:/Rfile/OD-B/Consequence" ##输出路径
-out_fileName <- sapply(names(data),function(x){
-                    paste(x, ".csv", sep='')}) ##csv格式
-out_filePath  <- sapply(out_fileName, function(x){
-                     paste(outPath ,x,sep='/')}) ##输出路径名
-##输出文件
-for(i in 1:length(data)){
-  write.csv(data[[i]], file=out_filePath[i], row.name=F) 
-}
-
-```
 
 
-
-
-```{r}
-for(i in 1:5) { 
- nam <- paste("A", i, sep = "")
- print(nam)
-}
-```
-
-
-
-
-```
-
-maize_1_de <- arrange(desc(Position))
-
-nam <- paste("A", i, sep = "")
-
-save(maize_fang_et_al_genotypes.txt, file = "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/maize_fang_et_al_genotypes.txt")
-
-save(teosinte_fang_et_al_genotypes.txt, file = "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/teosinte_fang_et_al_genotypes.txt")
-
-
-
-
-
-
-
-```
