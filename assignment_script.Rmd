@@ -103,13 +103,14 @@ for (i in 1:10) {
   write.csv(teosinte, file=out_filePath[i])
 }
 
-
-
 ```
 
 
 ```{r}
-maize_de <- data.frame(lapply(maize_fang_et_al_genotypes, as.character), stringsAsFactors=FALSE)
-maize_de <- sapply(maize_de,function(x) {x <- gsub("?","-",x,fixed=TRUE)})
+if (!require("reshape2")) install.packages("reshape2")
+library(reshape2)
+
+
+
 ```
 
