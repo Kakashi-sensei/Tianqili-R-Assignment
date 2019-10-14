@@ -44,11 +44,11 @@ maize_fang_et_al_genotypes <- cbind(snp_position, maize_fang_et_al_genotypes)
 
 teosinte_fang_et_al_genotypes <- cbind(snp_position, teosinte_fang_et_al_genotypes)
 
-maize_de <- data.frame(lapply(maize_fang_et_al_genotypes, as.character), stringsAsFactors=FALSE)
-maize_de <- sapply(maize_de,function(x) {x <- gsub("?","-",x,fixed=TRUE)})
+maize_ded <- data.frame(lapply(maize_fang_et_al_genotypes, as.character), stringsAsFactors=FALSE)
+maize_ded <- data.frame(sapply(maize_ded,function(x) {x <- gsub("?","-",x,fixed=TRUE)}))
 
-teosinte_de <- data.frame(lapply(teosinte_fang_et_al_genotypes, as.character), stringsAsFactors=FALSE)
-teosinte_de <- sapply(teosinte_de,function(x) {x <- gsub("?","-",x,fixed=TRUE)})
+teosinte_ded <- data.frame(lapply(teosinte_fang_et_al_genotypes, as.character), stringsAsFactors=FALSE)
+teosinte_ded <- data.frame(sapply(teosinte_ded,function(x) {x <- gsub("?","-",x,fixed=TRUE)}))
 
 for (i in 1:10) {
   maize <- filter(maize_fang_et_al_genotypes, Chromosome == i)
@@ -78,7 +78,7 @@ for (i in 1:10) {
 
 
 for (i in 1:10) {
-  maize <- filter(maize_de, Chromosome == i)
+  maize <- filter(maize_ded, Chromosome == i)
   maize <- arrange(maize, desc(Position))
   outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit"
   nam <- sapply(
@@ -91,7 +91,7 @@ for (i in 1:10) {
 }
 
 for (i in 1:10) {
-  teosinte <- filter(teosinte_de, Chromosome == i)
+  teosinte <- filter(teosinte_ded, Chromosome == i)
   teosinte <- arrange(teosinte, desc(Position))
   outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit"
   nam <- sapply(
