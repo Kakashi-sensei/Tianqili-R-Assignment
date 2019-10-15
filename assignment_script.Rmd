@@ -136,7 +136,15 @@ maize_fang_et_al_genotypes <- cbind(snp_position, maize_fang_et_al_genotypes)
 teosinte_fang_et_al_genotypes <- cbind(snp_position, teosinte_fang_et_al_genotypes)
 
 
-_mel <- melt(maize_fang_et_al_genotypes, c("Chromosome"))
+
+
+ggplot(data = dvst) + 
+  geom_bar(mapping = aes(x = cent))
+
+summarise(maize_fang_et_al_genotypes)
+
+
+m_mel <- melt(maize_fang_et_al_genotypes, c("Chromosome"))
 
 ```
 
