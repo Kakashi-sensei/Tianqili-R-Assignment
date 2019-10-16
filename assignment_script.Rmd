@@ -136,13 +136,21 @@ arrange(snp_position, SNP_ID)
 maize_fang_et_al_genotypes <- cbind(snp_position, maize_fang_et_al_genotypes)
 
 teosinte_fang_et_al_genotypes <- cbind(snp_position, teosinte_fang_et_al_genotypes)
+```
 
 
-maize_pp <- summarise(group_by(maize_fang_et_al_genotypes, Chromosome), a=n())
-ggplot(data=maize_pp) + geom_point(mapping=aes(x=Chromosome, y=a))
+```{r}
 
-ggplot(data = dvst) + geom_point(mapping=aes(x=position, y=diversity))
+summarise(group_by(maize_fang_et_al_genotypes, Chromosome), number_Chr=n())
+          
 
+ggplot(data= ) + geom_point(mapping=aes(x=Chromosome, y=number_Chr))
+```
+
+
+```{r}
+
+summarise(group_by(x,name),a=n()
 
 
 SNPs_numbers <- maize_fang_et_al_genotypes %>%
