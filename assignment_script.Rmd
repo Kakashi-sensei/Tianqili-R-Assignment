@@ -108,6 +108,8 @@ for (i in 1:10) {
 
 ```{r}
 #Part2
+if (!require("tidyverse")) install.packages("tidyverse")
+library(tidyverse)
 if (!require("reshape2")) install.packages("reshape2")
 library(reshape2)
 
@@ -136,6 +138,16 @@ maize_fang_et_al_genotypes <- cbind(snp_position, maize_fang_et_al_genotypes)
 teosinte_fang_et_al_genotypes <- cbind(snp_position, teosinte_fang_et_al_genotypes)
 
 
+maize_pp <- summarise(group_by(maize_fang_et_al_genotypes, Chromosome), a=n())
+ggplot(data=maize_pp) + geom_point(mapping=aes(x=Chromosome, y=a))
+
+ggplot(data = dvst) + geom_point(mapping=aes(x=position, y=diversity))
+
+
+
+SNPs_numbers <- maize_fang_et_al_genotypes %>%
+    group_by("Chromosome") %>%
+    count()
 
 
 ggplot(data = dvst) + 
