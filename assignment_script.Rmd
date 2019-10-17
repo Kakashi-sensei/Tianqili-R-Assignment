@@ -42,7 +42,7 @@ rm(snp_position)
 for (i in 1:10) {
   maize <- filter(maize_fang_et_al_genotypes, Chromosome == i)
   maize <- arrange(maize, Position)
-  outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit"
+  outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/"
   nam <- sapply(
     names(maize),function(x){
                     paste("maize_in", i, ".csv", sep='')
@@ -54,7 +54,7 @@ for (i in 1:10) {
 for (i in 1:10) {
   teosinte <- filter(teosinte_fang_et_al_genotypes, Chromosome == i)
   teosinte <- arrange(teosinte, Position)
-  outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit"
+  outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/"
   nam <- sapply(
     names(teosinte),function(x){
                     paste("teosinte_in", i, ".csv", sep='')
@@ -66,7 +66,7 @@ for (i in 1:10) {
 for (i in 1:10) {
   maize <- filter(maize_ded, Chromosome == i)
   maize <- arrange(maize, desc(Position))
-  outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit"
+  outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/"
   nam <- sapply(
     names(maize),function(x){
                     paste("maize_de", i, ".csv", sep='')
@@ -78,7 +78,7 @@ for (i in 1:10) {
 for (i in 1:10) {
   teosinte <- filter(teosinte_ded, Chromosome == i)
   teosinte <- arrange(teosinte, desc(Position))
-  outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit"
+  outpath <- "c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/"
   nam <- sapply(
     names(teosinte),function(x){
                     paste("teosinte_dd", i, ".csv", sep='')
@@ -112,7 +112,7 @@ maize_fang_et_al_genotypes <- cbind(snp_position, maize_fang_et_al_genotypes)
 teosinte_fang_et_al_genotypes <- cbind(snp_position, teosinte_fang_et_al_genotypes)
 rm(fang_et_al_genotypes)#clear up
 rm(snp_position)#clear up
-setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit")
+setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/")
 for(i in 1:2){
   if(i==1){
   pp=ggplot(data = maize_fang_et_al_genotypes) + 
@@ -131,7 +131,6 @@ getwd()
   }}
 rm(i)
 rm(pp)
-setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit")
 for(i in 1:2){
   maize_fang_et_al_genotypes$Position <- as.numeric(maize_fang_et_al_genotypes$Position)
   teosinte_fang_et_al_genotypes$Position <- as.numeric(teosinte_fang_et_al_genotypes$Position)
@@ -194,7 +193,7 @@ teosinte_melt <- mutate(teosinte_melt, allele = case_when(nu$Nucleotide==2~ "hom
 rm(nu)
 rm(i)
 #proportion of homozygous and heterozygous sites as well as missing data in each sample
-setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit")
+
 for(i in 1:2){
   if(i==1){
 pp=ggplot(data = maize_melt) + 
@@ -214,21 +213,19 @@ getwd()
               }
   rm(pp)
   rm(i)
-  
-  
 #proportion of homozygous and heterozygous sites as well as missing data in each Chromosome group
-setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit")
+setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/")
 for(i in 1:2){
   if(i==1){
 pp=ggplot(data = maize_melt) + 
-  geom_bar(mapping = aes(x =Chromosome, fill=allele))
+  geom_bar(mapping = aes(x =Chromosome, fill=allele), position = 'fill')#Normalize the height of individual bars
 print(pp)
 ggsave(pp,filename = "maize_gro_proportion.pdf",width = 3,height = 3)
 dev.off()
 getwd()
           }else{
             pp=ggplot(data = teosinte_melt) + 
-            geom_bar(mapping = aes(x =Chromosome, fill=allele))
+            geom_bar(mapping = aes(x =Chromosome, fill=allele), position = 'fill')#Normalize the height of individual bars
             print(pp)
             ggsave(pp,filename = "teosinte_gro_proportion.pdf",width = 3,height = 3)
             dev.off()
@@ -237,10 +234,29 @@ getwd()
               }
   rm(pp)
   rm(i)
-  
+#My own visualization-proportion of homozygous and heterozygous sites as well as missing data of all samples
+for(i in 1:2){
+  if(i==1){
+pp=ggplot(data = maize_melt) + 
+  geom_bar(mapping = aes(x =allele))
+print(pp)
+ggsave(pp,filename = "maize_allele.pdf",width = 3,height = 3)
+dev.off()
+getwd()
+          }else{
+            pp=ggplot(data = teosinte_melt) + 
+            geom_bar(mapping = aes(x =allele))
+            print(pp)
+            ggsave(pp,filename = "teosinte_allele.pdf",width = 3,height = 3)
+            dev.off()
+            getwd()
+                }
+              }
+rm(list = ls())
 ```
 
 ```{r}
+
 
 ```
 
