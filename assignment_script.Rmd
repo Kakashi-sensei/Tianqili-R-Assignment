@@ -118,14 +118,14 @@ for(i in 1:2){
   pp=ggplot(data = maize_fang_et_al_genotypes) + 
   geom_bar(mapping = aes(x = Chromosome))
 print(pp)
-ggsave(pp,filename = "maize_p.tiff",width = 12,height = 10)
+ggsave(pp,filename = "maize_p.pdf",width = 3,height = 3)
 dev.off()
 getwd()
   }else{
   pp=ggplot(data = teosinte_fang_et_al_genotypes) + 
   geom_bar(mapping = aes(x = Chromosome))
 print(pp)
-ggsave(pp,filename = "teosinte_p.tiff",width = 12,height = 10)
+ggsave(pp,filename = "teosinte_p.pdf",width = 3,height = 3)
 dev.off()
 getwd()
   }}
@@ -139,14 +139,14 @@ for(i in 1:2){
   pp=ggplot(data = maize_fang_et_al_genotypes, mapping=aes(x=Chromosome, y=Position))+
       geom_point(alpha=0.1)
   print(pp)
-  ggsave(pp,filename = "maize_distribution.tiff",width = 10,height = 12)
+  ggsave(pp,filename = "maize_distribution.pdf",width = 3,height = 3)
   dev.off()
   getwd()
           }else{
   pp=ggplot(data = teosinte_fang_et_al_genotypes, mapping=aes(x=Chromosome, y=Position))+
      geom_point(alpha=0.1)
   print(pp)
-  ggsave(pp,filename = "teosinte_distribution.tiff",width = 10,height = 12)
+  ggsave(pp,filename = "teosinte_distribution.pdf",width = 3,height = 3)
   dev.off()
   getwd()
                }
@@ -200,20 +200,44 @@ for(i in 1:2){
 pp=ggplot(data = maize_melt) + 
   geom_bar(mapping = aes(x =Sample, fill=allele))
 print(pp)
-ggsave(pp,filename = "maize_proportion.tiff",width = 14,height = 10)
+ggsave(pp,filename = "maize_proportion.pdf",width = 3,height = 3)
 dev.off()
 getwd()
           }else{
             pp=ggplot(data = teosinte_melt) + 
             geom_bar(mapping = aes(x =Sample, fill=allele))
             print(pp)
-            ggsave(pp,filename = "teosinte_proportion.tiff",width = 14,height = 10)
+            ggsave(pp,filename = "teosinte_proportion.pdf",width = 3,height = 3)
             dev.off()
             getwd()
                 }
               }
   rm(pp)
   rm(i)
+  
+  
+#proportion of homozygous and heterozygous sites as well as missing data in each Chromosome group
+setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit")
+for(i in 1:2){
+  if(i==1){
+pp=ggplot(data = maize_melt) + 
+  geom_bar(mapping = aes(x =Chromosome, fill=allele))
+print(pp)
+ggsave(pp,filename = "maize_gro_proportion.pdf",width = 3,height = 3)
+dev.off()
+getwd()
+          }else{
+            pp=ggplot(data = teosinte_melt) + 
+            geom_bar(mapping = aes(x =Chromosome, fill=allele))
+            print(pp)
+            ggsave(pp,filename = "teosinte_gro_proportion.pdf",width = 3,height = 3)
+            dev.off()
+            getwd()
+                }
+              }
+  rm(pp)
+  rm(i)
+  
 ```
 
 ```{r}
