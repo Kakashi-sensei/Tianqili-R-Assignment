@@ -33,9 +33,17 @@ maize_fang_et_al_genotypes <- cbind(snp_position, maize_fang_et_al_genotypes)
 teosinte_fang_et_al_genotypes <- cbind(snp_position, teosinte_fang_et_al_genotypes)
 #replace "?" to "-"
 maize_ded <- data.frame(lapply(maize_fang_et_al_genotypes, as.character), stringsAsFactors=FALSE)
-maize_ded <- data.frame(sapply(maize_ded,function(x) {x <- gsub("?","-",x,fixed=TRUE)}))
+maize_ded <- data.frame(sapply(
+  maize_ded,function(x) {
+    x <- gsub("?","-",x,fixed=TRUE)
+                        }
+                             ))
 teosinte_ded <- data.frame(lapply(teosinte_fang_et_al_genotypes, as.character), stringsAsFactors=FALSE)
-teosinte_ded <- data.frame(sapply(teosinte_ded,function(x) {x <- gsub("?","-",x,fixed=TRUE)}))
+teosinte_ded <- data.frame(sapply
+                            (teosinte_ded,function(x){
+                              x <- gsub("?","-",x,fixed=TRUE)
+                                                     }
+                              ))
 rm(fang_et_al_genotypes)#clear up
 rm(snp_position)
 #game on
@@ -46,11 +54,15 @@ for (i in 1:10) {
   nam <- sapply(
     names(maize),function(x){
                     paste("maize_in", i, ".csv", sep='')
-    })
-  out_filePath <- sapply(nam, function(x){
-                     paste(outpath, x, sep='/')})
+                            }
+               )
+  out_filePath <- sapply(
+    nam, function(x){
+             paste(outpath, x, sep='/')
+                    }
+                         )
   write.csv(maize, file=out_filePath[i])
-} #10 of maize increase data
+                } #10 of maize increase data
 for (i in 1:10) {
   teosinte <- filter(teosinte_fang_et_al_genotypes, Chromosome == i)
   teosinte <- arrange(teosinte, Position)
@@ -58,11 +70,15 @@ for (i in 1:10) {
   nam <- sapply(
     names(teosinte),function(x){
                     paste("teosinte_in", i, ".csv", sep='')
-    })
-  out_filePath <- sapply(nam, function(x){
-                     paste(outpath, x, sep='/')})
-  write.csv(teosinte, file=out_filePath[i])
-} #10 of teosinte increase data
+                               }
+               )
+  out_filePath <- sapply(
+                    nam, function(x){
+                      paste(outpath, x, sep='/')
+                                    }
+                         )
+   write.csv(teosinte, file=out_filePath[i])
+                } #10 of teosinte increase data
 for (i in 1:10) {
   maize <- filter(maize_ded, Chromosome == i)
   maize <- arrange(maize, desc(Position))
@@ -70,11 +86,14 @@ for (i in 1:10) {
   nam <- sapply(
     names(maize),function(x){
                     paste("maize_de", i, ".csv", sep='')
-    })
+                            }
+               )
   out_filePath <- sapply(nam, function(x){
-                     paste(outpath, x, sep='/')})
+                     paste(outpath, x, sep='/')
+                                         }
+                        )
   write.csv(maize, file=out_filePath[i])
-}
+                 }
 for (i in 1:10) {
   teosinte <- filter(teosinte_ded, Chromosome == i)
   teosinte <- arrange(teosinte, desc(Position))
@@ -82,11 +101,15 @@ for (i in 1:10) {
   nam <- sapply(
     names(teosinte),function(x){
                     paste("teosinte_dd", i, ".csv", sep='')
-    })
-  out_filePath <- sapply(nam, function(x){
-                     paste(outpath, x, sep='/')})
+                               }
+                )
+  out_filePath <- sapply(
+    nam, function(x){
+                     paste(outpath, x, sep='/')
+                    }
+                        )
   write.csv(teosinte, file=out_filePath[i])
-}
+                 }
 rm(list = ls())
 ```
 
@@ -112,26 +135,27 @@ maize_fang_et_al_genotypes <- cbind(snp_position, maize_fang_et_al_genotypes)
 teosinte_fang_et_al_genotypes <- cbind(snp_position, teosinte_fang_et_al_genotypes)
 rm(fang_et_al_genotypes)#clear up
 rm(snp_position)#clear up
-setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/")
-for(i in 1:2){
+setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/")#set saving address
+for(i in 1:2){#Plot the total number of SNPs in our dataset on each chromosome
   if(i==1){
-  pp=ggplot(data = maize_fang_et_al_genotypes) + 
-  geom_bar(mapping = aes(x = Chromosome))
-print(pp)
-ggsave(pp,filename = "maize_p.pdf",width = 3,height = 3)
-dev.off()
-getwd()
-  }else{
-  pp=ggplot(data = teosinte_fang_et_al_genotypes) + 
-  geom_bar(mapping = aes(x = Chromosome))
-print(pp)
-ggsave(pp,filename = "teosinte_p.pdf",width = 3,height = 3)
-dev.off()
-getwd()
-  }}
-rm(i)
-rm(pp)
-for(i in 1:2){
+    pp=ggplot(data = maize_fang_et_al_genotypes) + 
+      geom_bar(mapping = aes(x = Chromosome))
+    print(pp)
+    ggsave(pp,filename = "maize_p.pdf",width = 3,height = 3)
+    dev.off()
+    getwd()#save files
+          }else{
+            pp=ggplot(data = teosinte_fang_et_al_genotypes) + 
+             geom_bar(mapping = aes(x = Chromosome))
+            print(pp)
+            ggsave(pp,filename = "teosinte_p.pdf",width = 3,height = 3)
+            dev.off()#save files
+            getwd()
+            }
+          }
+    rm(i)
+    rm(pp)
+for(i in 1:2){#plot the distribution(position) of SNPs on chromosomes
   maize_fang_et_al_genotypes$Position <- as.numeric(maize_fang_et_al_genotypes$Position)
   teosinte_fang_et_al_genotypes$Position <- as.numeric(teosinte_fang_et_al_genotypes$Position)
   if(i==1){
