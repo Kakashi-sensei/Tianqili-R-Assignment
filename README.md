@@ -2,6 +2,7 @@
 R assignment
 
 * All needed files (40 sorted ones and some figures) are in the directory of "submit".
+https://github.com/Kakashi-sensei/Tianqili-R-Assignment/tree/master/submit
 
 * The whole code is in the file of "assignment_script.Rmd"
 https://raw.githubusercontent.com/Kakashi-sensei/Tianqili-R-Assignment/master/assignment_script.Rmd
