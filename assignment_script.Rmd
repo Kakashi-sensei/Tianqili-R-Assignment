@@ -2,25 +2,42 @@
 title: "R-assignment"
 author: "Tianqi(Tim)"
 date: "10/12/2019"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## R Assignment
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This is Tianqi Li's R-Assignment R-Markdown file.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Acknowledgement
+
+This Assignment was reviewed by Anilkumar Vinithakumari and Amruta Bapat.
+Thank you for taking the time to leave this excellent and detailed review. I appreciate their business. The data visualization part has been added at the beginning of Part 1. The script has been revised.
+
+Also, I want to thank other calssmates' help on the original script. Without their help, it cannot be done.
 
 ```{r}
-#part1
+#part 1
 if (!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
 fang_et_al_genotypes <- read_tsv ("https://raw.githubusercontent.com/Kakashi-sensei/Tianqili-R-Assignment/master/fang_et_al_genotypes.txt")
 snp_position <- read_tsv ("https://raw.githubusercontent.com/Kakashi-sensei/Tianqili-R-Assignment/master/snp_position.txt")
+#Data Inspection
+str(fang_et_al_genotypes)
+nrow(fang_et_al_genotypes)
+ncol(fang_et_al_genotypes)
+dim(fang_et_al_genotypes)
+str(snp_position)
+nrow(snp_position)
+ncol(snp_position)
+dim(snp_position)
+#start
 maize_fang_et_al_genotypes <- filter(fang_et_al_genotypes, Group == "ZMMLR" | Group == "ZMMIL" | Group == "ZMMMR")
 teosinte_fang_et_al_genotypes <- filter(fang_et_al_genotypes, Group == "ZMPBA" | Group == "ZMPIL" | Group == "ZMPJA")
 maize_fang_et_al_genotypes <- maize_fang_et_al_genotypes[,-c(1,2,3)]
@@ -214,7 +231,6 @@ teosinte_melt <- mutate(teosinte_melt, allele = case_when(nu$Nucleotide==2~ "hom
 rm(nu)
 rm(i)
 #proportion of homozygous and heterozygous sites as well as missing data in each sample
-
 i<- c(1,2)
   if(i==1){
 pp=ggplot(data = maize_melt) + 
