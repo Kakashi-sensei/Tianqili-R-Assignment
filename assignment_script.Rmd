@@ -212,7 +212,6 @@ maize_melt <- mutate(maize_melt, allele = case_when(nu$Nucleotide==2~ "homozygou
                                                     nu$Nucleotide==1~ "miss",
                                                     nu$Nucleotide!=(1|2|11|9|6)~ "heterozygous")
                     )
-write.csv(maize_melt, file = "maize_melt.csv")
            }else{ 
 teosinte_melt<-melt(teosinte_fang_et_al_genotypes,id.vars=c("SNP_ID","Chromosome", "Position"),variable.name = "Sample", value.name="Nucleotide")
 rm(teosinte_fang_et_al_genotypes)
@@ -230,7 +229,6 @@ teosinte_melt <- mutate(teosinte_melt, allele = case_when(nu$Nucleotide==2~ "hom
                                                           nu$Nucleotide==1~ "miss",
                                                           nu$Nucleotide!=(1|2|11|9|6)~ "heterozygous")
                         )
-write.csv(teosinte_melt, file = "teosinte_melt.csv")
            }
                }
 rm(nu)
@@ -256,7 +254,6 @@ getwd()
   rm(pp)
   rm(i)
 #proportion of homozygous and heterozygous sites as well as missing data in each Chromosome group
-setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/")
  for (i in 1:2){
   if(i==1){
 pp=ggplot(data = maize_melt) + 
