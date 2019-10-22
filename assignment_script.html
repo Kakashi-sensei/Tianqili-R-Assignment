@@ -1733,7 +1733,7 @@ teosinte_fang_et_al_genotypes &lt;- cbind(snp_position, teosinte_fang_et_al_geno
 rm(fang_et_al_genotypes)#clear up
 rm(snp_position)#clear up
 setwd(&quot;c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/&quot;)#set saving address
-i &lt;- c(1, 2)#Plot the total number of SNPs in our dataset on each chromosome
+for (i in 1:2){#Plot the total number of SNPs in our dataset on each chromosome
   if(i==1){
     pp=ggplot(data = maize_fang_et_al_genotypes) + 
       geom_bar(mapping = aes(x = Chromosome))
@@ -1748,18 +1748,14 @@ i &lt;- c(1, 2)#Plot the total number of SNPs in our dataset on each chromosome
             ggsave(pp,filename = &quot;teosinte_p.pdf&quot;,width = 3,height = 3)
             dev.off()#save files
             getwd()
-            }</code></pre>
-<pre><code>## Warning in if (i == 1) {: the condition has length &gt; 1 and only the first
-## element will be used</code></pre>
-<pre><code>## [1] &quot;c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit&quot;</code></pre>
-<pre class="r"><code>    rm(i)
+          }
+              }
+    rm(i)
     rm(pp)
-i &lt;- c(1, 2)#plot the distribution(position) of SNPs on chromosomes
-  maize_fang_et_al_genotypes$Position &lt;- as.numeric(maize_fang_et_al_genotypes$Position)</code></pre>
-<pre><code>## Warning: NAs introduced by coercion</code></pre>
-<pre class="r"><code>  teosinte_fang_et_al_genotypes$Position &lt;- as.numeric(teosinte_fang_et_al_genotypes$Position)</code></pre>
-<pre><code>## Warning: NAs introduced by coercion</code></pre>
-<pre class="r"><code>  if(i==1){
+for (i in 1:2){#plot the distribution(position) of SNPs on chromosomes
+  maize_fang_et_al_genotypes$Position &lt;- as.numeric(maize_fang_et_al_genotypes$Position)
+  teosinte_fang_et_al_genotypes$Position &lt;- as.numeric(teosinte_fang_et_al_genotypes$Position)
+  if(i==1){
   pp=ggplot(data = maize_fang_et_al_genotypes, mapping=aes(x=Chromosome, y=Position))+
       geom_point(alpha=0.1)
   print(pp)
@@ -1773,17 +1769,21 @@ i &lt;- c(1, 2)#plot the distribution(position) of SNPs on chromosomes
   ggsave(pp,filename = &quot;teosinte_distribution.pdf&quot;,width = 3,height = 3)
   dev.off()
   getwd()
+          }
                }</code></pre>
-<pre><code>## Warning in if (i == 1) {: the condition has length &gt; 1 and only the first
-## element will be used</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
 <pre><code>## Warning: Removed 44 rows containing missing values (geom_point).
 
+## Warning: Removed 44 rows containing missing values (geom_point).
+
+## Warning: Removed 44 rows containing missing values (geom_point).
+
 ## Warning: Removed 44 rows containing missing values (geom_point).</code></pre>
-<pre><code>## [1] &quot;c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit&quot;</code></pre>
 <pre class="r"><code>rm(pp)
 rm(i)
 ##Missing data and amount of heterozygosity
-i &lt;- c(1, 2)
+for(i in 1:2){
   if(i==1){
     maize_melt &lt;-melt(maize_fang_et_al_genotypes,id.vars=c(&quot;SNP_ID&quot;,&quot;Chromosome&quot;, &quot;Position&quot;),variable.name = &quot;Sample&quot;, value.name=&quot;Nucleotide&quot;)
     rm(maize_fang_et_al_genotypes)
@@ -1801,6 +1801,7 @@ maize_melt &lt;- mutate(maize_melt, allele = case_when(nu$Nucleotide==2~ &quot;h
                                                     nu$Nucleotide==1~ &quot;miss&quot;,
                                                     nu$Nucleotide!=(1|2|11|9|6)~ &quot;heterozygous&quot;)
                     )
+write.csv(maize_melt, file = &quot;maize_melt.csv&quot;)
            }else{ 
 teosinte_melt&lt;-melt(teosinte_fang_et_al_genotypes,id.vars=c(&quot;SNP_ID&quot;,&quot;Chromosome&quot;, &quot;Position&quot;),variable.name = &quot;Sample&quot;, value.name=&quot;Nucleotide&quot;)
 rm(teosinte_fang_et_al_genotypes)
@@ -1818,15 +1819,17 @@ teosinte_melt &lt;- mutate(teosinte_melt, allele = case_when(nu$Nucleotide==2~ &
                                                           nu$Nucleotide==1~ &quot;miss&quot;,
                                                           nu$Nucleotide!=(1|2|11|9|6)~ &quot;heterozygous&quot;)
                         )
-                 }</code></pre>
-<pre><code>## Warning in if (i == 1) {: the condition has length &gt; 1 and only the first
-## element will be used</code></pre>
+write.csv(teosinte_melt, file = &quot;teosinte_melt.csv&quot;)
+           }
+               }</code></pre>
+<pre><code>## Warning: attributes are not identical across measure variables; they will
+## be dropped</code></pre>
 <pre><code>## Warning: attributes are not identical across measure variables; they will
 ## be dropped</code></pre>
 <pre class="r"><code>rm(nu)
 rm(i)
 #proportion of homozygous and heterozygous sites as well as missing data in each sample
-i&lt;- c(1,2)
+for (i in 1:2){
   if(i==1){
 pp=ggplot(data = maize_melt) + 
   geom_bar(mapping = aes(x =Sample, fill=allele))
@@ -1841,15 +1844,13 @@ getwd()
             ggsave(pp,filename = &quot;teosinte_proportion.pdf&quot;,width = 3,height = 3)
             dev.off()
             getwd()
-                }</code></pre>
-<pre><code>## Warning in if (i == 1) {: the condition has length &gt; 1 and only the first
-## element will be used</code></pre>
-<pre><code>## [1] &quot;c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit&quot;</code></pre>
-<pre class="r"><code>  rm(pp)
+          }
+                }
+  rm(pp)
   rm(i)
 #proportion of homozygous and heterozygous sites as well as missing data in each Chromosome group
 setwd(&quot;c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/&quot;)
- i&lt;- c(1, 2)
+ for (i in 1:2){
   if(i==1){
 pp=ggplot(data = maize_melt) + 
   geom_bar(mapping = aes(x =Chromosome, fill=allele), position = &#39;fill&#39;)#Normalize the height of individual bars
@@ -1864,14 +1865,12 @@ getwd()
             ggsave(pp,filename = &quot;teosinte_gro_proportion.pdf&quot;,width = 3,height = 3)
             dev.off()
             getwd()
-                }</code></pre>
-<pre><code>## Warning in if (i == 1) {: the condition has length &gt; 1 and only the first
-## element will be used</code></pre>
-<pre><code>## [1] &quot;c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit&quot;</code></pre>
-<pre class="r"><code>  rm(pp)
+          }
+                }
+  rm(pp)
   rm(i)
 #My own visualization-proportion of homozygous and heterozygous sites as well as missing data of all samples
-i &lt;- c(1, 2)
+for (i in 1:2){
   if(i==1){
 pp=ggplot(data = maize_melt) + 
   geom_bar(mapping = aes(x =allele))
@@ -1886,11 +1885,9 @@ getwd()
             ggsave(pp,filename = &quot;teosinte_allele.pdf&quot;,width = 3,height = 3)
             dev.off()
             getwd()
-                }</code></pre>
-<pre><code>## Warning in if (i == 1) {: the condition has length &gt; 1 and only the first
-## element will be used</code></pre>
-<pre><code>## [1] &quot;c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit&quot;</code></pre>
-<pre class="r"><code>rm(list = ls())</code></pre>
+          }
+                }
+rm(list = ls())</code></pre>
 </div>
 
 

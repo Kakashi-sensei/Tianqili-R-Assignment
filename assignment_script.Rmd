@@ -3,8 +3,8 @@ title: "R-assignment"
 author: "Tianqi(Tim)"
 date: "10/12/2019"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -153,7 +153,7 @@ teosinte_fang_et_al_genotypes <- cbind(snp_position, teosinte_fang_et_al_genotyp
 rm(fang_et_al_genotypes)#clear up
 rm(snp_position)#clear up
 setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/")#set saving address
-i <- c(1, 2)#Plot the total number of SNPs in our dataset on each chromosome
+for (i in 1:2){#Plot the total number of SNPs in our dataset on each chromosome
   if(i==1){
     pp=ggplot(data = maize_fang_et_al_genotypes) + 
       geom_bar(mapping = aes(x = Chromosome))
@@ -168,10 +168,11 @@ i <- c(1, 2)#Plot the total number of SNPs in our dataset on each chromosome
             ggsave(pp,filename = "teosinte_p.pdf",width = 3,height = 3)
             dev.off()#save files
             getwd()
-            }
+          }
+              }
     rm(i)
     rm(pp)
-i <- c(1, 2)#plot the distribution(position) of SNPs on chromosomes
+for (i in 1:2){#plot the distribution(position) of SNPs on chromosomes
   maize_fang_et_al_genotypes$Position <- as.numeric(maize_fang_et_al_genotypes$Position)
   teosinte_fang_et_al_genotypes$Position <- as.numeric(teosinte_fang_et_al_genotypes$Position)
   if(i==1){
@@ -188,11 +189,12 @@ i <- c(1, 2)#plot the distribution(position) of SNPs on chromosomes
   ggsave(pp,filename = "teosinte_distribution.pdf",width = 3,height = 3)
   dev.off()
   getwd()
+          }
                }
 rm(pp)
 rm(i)
 ##Missing data and amount of heterozygosity
-i <- c(1, 2)
+for(i in 1:2){
   if(i==1){
     maize_melt <-melt(maize_fang_et_al_genotypes,id.vars=c("SNP_ID","Chromosome", "Position"),variable.name = "Sample", value.name="Nucleotide")
     rm(maize_fang_et_al_genotypes)
@@ -210,6 +212,7 @@ maize_melt <- mutate(maize_melt, allele = case_when(nu$Nucleotide==2~ "homozygou
                                                     nu$Nucleotide==1~ "miss",
                                                     nu$Nucleotide!=(1|2|11|9|6)~ "heterozygous")
                     )
+write.csv(maize_melt, file = "maize_melt.csv")
            }else{ 
 teosinte_melt<-melt(teosinte_fang_et_al_genotypes,id.vars=c("SNP_ID","Chromosome", "Position"),variable.name = "Sample", value.name="Nucleotide")
 rm(teosinte_fang_et_al_genotypes)
@@ -227,11 +230,13 @@ teosinte_melt <- mutate(teosinte_melt, allele = case_when(nu$Nucleotide==2~ "hom
                                                           nu$Nucleotide==1~ "miss",
                                                           nu$Nucleotide!=(1|2|11|9|6)~ "heterozygous")
                         )
-                 }
+write.csv(teosinte_melt, file = "teosinte_melt.csv")
+           }
+               }
 rm(nu)
 rm(i)
 #proportion of homozygous and heterozygous sites as well as missing data in each sample
-i<- c(1,2)
+for (i in 1:2){
   if(i==1){
 pp=ggplot(data = maize_melt) + 
   geom_bar(mapping = aes(x =Sample, fill=allele))
@@ -246,12 +251,13 @@ getwd()
             ggsave(pp,filename = "teosinte_proportion.pdf",width = 3,height = 3)
             dev.off()
             getwd()
+          }
                 }
   rm(pp)
   rm(i)
 #proportion of homozygous and heterozygous sites as well as missing data in each Chromosome group
 setwd("c:/Users/46554/github/R-Assignment/Tianqili-R-Assignment/submit/")
- i<- c(1, 2)
+ for (i in 1:2){
   if(i==1){
 pp=ggplot(data = maize_melt) + 
   geom_bar(mapping = aes(x =Chromosome, fill=allele), position = 'fill')#Normalize the height of individual bars
@@ -266,11 +272,12 @@ getwd()
             ggsave(pp,filename = "teosinte_gro_proportion.pdf",width = 3,height = 3)
             dev.off()
             getwd()
+          }
                 }
   rm(pp)
   rm(i)
 #My own visualization-proportion of homozygous and heterozygous sites as well as missing data of all samples
-i <- c(1, 2)
+for (i in 1:2){
   if(i==1){
 pp=ggplot(data = maize_melt) + 
   geom_bar(mapping = aes(x =allele))
@@ -285,6 +292,7 @@ getwd()
             ggsave(pp,filename = "teosinte_allele.pdf",width = 3,height = 3)
             dev.off()
             getwd()
+          }
                 }
 rm(list = ls())
 ```
