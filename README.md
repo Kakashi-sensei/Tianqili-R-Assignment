@@ -9,5 +9,6 @@ https://raw.githubusercontent.com/Kakashi-sensei/Tianqili-R-Assignment/master/as
 * The required output file is "assignment_script.html"
 https://github.com/Kakashi-sensei/Tianqili-R-Assignment/blob/master/assignment_script.html
 
-* "Bapat_review.Rmd" is the review file
+* "Bapat_review.Rmd" and "Anilkumar Vinithakumari Review.Rmd" are review files
 https://raw.githubusercontent.com/Kakashi-sensei/Tianqili-R-Assignment/master/Bapat_review.Rmd
+https://github.com/Kakashi-sensei/Tianqili-R-Assignment/blob/master/Anilkumar%20Vinithakumari%20Review.Rmd
