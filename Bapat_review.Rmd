@@ -1,0 +1,4 @@
+These are the only comments I have on your submission.
+
+1. The Markdown file is an excellent example of how it should be written.
+2. If I am not mistaken, you need to do a cumulative analysis (maize+teosinte) for the data visualization part of the assignment.
