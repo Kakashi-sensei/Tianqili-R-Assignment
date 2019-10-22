@@ -165,9 +165,8 @@ for (i in 1:2){#Plot the total number of SNPs in our dataset on each chromosome
             pp=ggplot(data = teosinte_fang_et_al_genotypes) + 
              geom_bar(mapping = aes(x = Chromosome))
             print(pp)
-            ggsave(pp,filename = "teosinte_p.pdf",width = 3,height = 3)
-            dev.off()#save files
-            getwd()
+            ggsave(pp,filename = "teosinte_p.pdf",width = 3,height = 3)#save files
+            dev.off()#reset graphics device 
           }
               }
     rm(i)
@@ -181,14 +180,12 @@ for (i in 1:2){#plot the distribution(position) of SNPs on chromosomes
   print(pp)
   ggsave(pp,filename = "maize_distribution.pdf",width = 3,height = 3)
   dev.off()
-  getwd()
           }else{
   pp=ggplot(data = teosinte_fang_et_al_genotypes, mapping=aes(x=Chromosome, y=Position))+
      geom_point(alpha=0.1)
   print(pp)
   ggsave(pp,filename = "teosinte_distribution.pdf",width = 3,height = 3)
   dev.off()
-  getwd()
           }
                }
 rm(pp)
@@ -241,14 +238,12 @@ pp=ggplot(data = maize_melt) +
 print(pp)
 ggsave(pp,filename = "maize_proportion.pdf",width = 3,height = 3)
 dev.off()
-getwd()
           }else{
             pp=ggplot(data = teosinte_melt) + 
             geom_bar(mapping = aes(x =Sample, fill=allele))
             print(pp)
             ggsave(pp,filename = "teosinte_proportion.pdf",width = 3,height = 3)
             dev.off()
-            getwd()
           }
                 }
   rm(pp)
@@ -261,14 +256,12 @@ pp=ggplot(data = maize_melt) +
 print(pp)
 ggsave(pp,filename = "maize_gro_proportion.pdf",width = 3,height = 3)
 dev.off()
-getwd()
           }else{
             pp=ggplot(data = teosinte_melt) + 
             geom_bar(mapping = aes(x =Chromosome, fill=allele), position = 'fill')#Normalize the height of individual bars
             print(pp)
             ggsave(pp,filename = "teosinte_gro_proportion.pdf",width = 3,height = 3)
             dev.off()
-            getwd()
           }
                 }
   rm(pp)
@@ -288,7 +281,6 @@ getwd()
             print(pp)
             ggsave(pp,filename = "teosinte_allele.pdf",width = 3,height = 3)
             dev.off()
-            getwd()
           }
                 }
 rm(list = ls())
